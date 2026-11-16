@@ -815,7 +815,7 @@ impl Refused {
 }
 
 /// Can a selection go into an input that accepts `a`? (Planar-ness is checked when picking.)
-fn fits(a: Accept, s: &Sel) -> bool {
+pub(crate) fn fits(a: Accept, s: &Sel) -> bool {
     match s {
         Sel::Profile { .. } => a & PROFILES != 0,
         Sel::Edge { .. } => a & EDGES != 0,
@@ -2361,11 +2361,17 @@ fn single_hole_point(app: &SolveApp, d: &Dialog, x: &Sel) -> Option<(u64, String
     if let Some(k) = d.extra.get("single_point").filter(|k| k["point"] == pt3(*point)) {
         return Some((k["sketch"].as_u64()?, k["id"].as_str()?.to_string()));
     }
+    snapped_sketch_point(app, *point)
+}
+
+/// The point of a shown sketch (its sketch and id) that is exactly at `point`: where a face pick
+/// snapped to it, so a hole placed there can follow the point.
+pub(crate) fn snapped_sketch_point(app: &SolveApp, point: Vec3) -> Option<(u64, String)> {
     let st = crate::open_meshing::session_world(&app.session);
     crate::viewport::visible_sketches(app).into_iter().find_map(|sid| {
         let ss = st.sketch(sid)?;
         let shown = SnapPoints::of(&ss.sketch);
-        let p = ss.sketch.points.iter().find(|p| shown.takes(p) && ss.plane.to_world(p.pos).dist(*point) < 1e-9)?;
+        let p = ss.sketch.points.iter().find(|p| shown.takes(p) && ss.plane.to_world(p.pos).dist(point) < 1e-9)?;
         Some((sid, p.id.clone()))
     })
 }
@@ -5628,7 +5634,9 @@ pub fn apply_commands(app: &SolveApp, d: &Dialog) -> Result<Vec<(String, Value)>
                 }
             }
         }
-        return Ok(vec![("timeline.redefine".into(), json!({"feature": id, "command": cmd, "params": params}))]);
+        // A Heat-Set Insert's parts follow its edit: the size, the holes and whether it has them.
+        let parts = (cmd == "plastic.heat_insert").then(|| ("plastic.heat_insert_parts".to_string(), json!({"feature": id})));
+        return Ok(std::iter::once(("timeline.redefine".into(), json!({"feature": id, "command": cmd, "params": params}))).chain(parts).collect());
     }
     Ok(cmds)
 }
@@ -7762,6 +7770,13 @@ pub fn for_feature(app: &SolveApp, id: u64, marker: Option<usize>) -> Option<Dia
             d.extra.insert("pull".into(), pt3(pull.0));
             d
         }
+        // A Heat-Set Insert is a hole for a threaded insert: its own dialog edits it.
+        FeatureKind::Hole { insert: Some(_), .. } => {
+            let (kind, inputs, extra) = crate::dialogs_plastic::for_feature(app, &f.kind)?;
+            let mut d = Dialog::new(kind, inputs);
+            d.extra = extra;
+            d
+        }
         FeatureKind::Hole {
             position,
             at,
@@ -7780,6 +7795,8 @@ pub fn for_feature(app: &SolveApp, id: u64, marker: Option<usize>) -> Option<Dia
             // Not in the Hole window yet: an edit keeps it (`timeline.redefine`).
             thread_class: _,
             old_surface_start: _,
+            more: _,
+            insert: _,
         } => {
             let mut d = start("solid.hole")?;
             let mut k = hole_defaults(s);

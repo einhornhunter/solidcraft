@@ -83,6 +83,8 @@ mod design_link;
 mod file;
 mod frame;
 mod frame_end_cap;
+mod heat_insert;
+pub use heat_insert::{InsertSize as HeatInsertSize, all_sizes as heat_insert_sizes};
 pub(crate) mod inspect;
 mod interference;
 pub(crate) mod joints;
@@ -379,6 +381,7 @@ pub fn command_specs() -> Vec<&'static CommandSpec> {
     v.extend(construct::COMMANDS.iter());
     v.extend(sheet::COMMANDS.iter());
     v.extend(plastic::COMMANDS.iter());
+    v.extend(heat_insert::COMMANDS.iter());
     v.extend(frame::COMMANDS.iter());
     v.extend(frame_end_cap::COMMANDS.iter());
     v.extend(component::COMMANDS.iter());

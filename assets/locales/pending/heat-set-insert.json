@@ -1,0 +1,10 @@
+{
+  "en": { "cmd.plastic_heat_insert": "Heat-Set Insert", "cmd.plastic_heat_insert_sizes": "Heat-Set Insert Sizes" },
+  "de": { "cmd.plastic_heat_insert": "Gewindeeinsatz", "cmd.plastic_heat_insert_sizes": "Gewindeeinsatz-Größen" },
+  "ja": { "cmd.plastic_heat_insert": "熱圧入インサート", "cmd.plastic_heat_insert_sizes": "熱圧入インサートのサイズ" },
+  "zh": { "cmd.plastic_heat_insert": "热熔螺母", "cmd.plastic_heat_insert_sizes": "热熔螺母尺寸" },
+  "ko": { "cmd.plastic_heat_insert": "열융착 인서트", "cmd.plastic_heat_insert_sizes": "열융착 인서트 크기" },
+  "ar": { "cmd.plastic_heat_insert": "حشوة ملولبة بالحرارة", "cmd.plastic_heat_insert_sizes": "مقاسات الحشوات الملولبة بالحرارة" },
+  "he": { "cmd.plastic_heat_insert": "תותב הברגה בחום", "cmd.plastic_heat_insert_sizes": "מידות תותבי הברגה בחום" },
+  "vi": { "cmd.plastic_heat_insert": "Đai ốc cấy nhiệt", "cmd.plastic_heat_insert_sizes": "Kích thước đai ốc cấy nhiệt" }
+}
