@@ -619,7 +619,7 @@ fn rename(s: &mut Session, p: &Value) -> Result<Value> {
     reply(RenameResult { component: id, name: name.to_string(), param_warnings: Vec::new() })
 }
 
-pub(super) fn delete(s: &mut Session, p: &Value) -> Result<Value> {
+fn delete(s: &mut Session, p: &Value) -> Result<Value> {
     let cmd = "component.delete";
     let id = component(s, p, "component", cmd)?;
     if id == 0 {
