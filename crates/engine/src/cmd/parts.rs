@@ -953,7 +953,7 @@ fn library(_s: &mut Session, p: &Value) -> Result<Value> {
             }
             "dowel_pin_gost" => GOST_PIN.iter().map(|d| json!({"size": format!("{d}"), "d": d})).collect(),
             "heat_set_insert" => super::heat_insert::all_sizes()
-                .map(|z| json!({"size": z.id, "thread": z.thread, "outer": z.outer, "length": z.length, "hole_diameter": z.hole, "min_wall": z.min_wall, "bore": insert_bore(z)}))
+                .map(|z| json!({"size": z.id, "outer": z.outer, "length": z.length, "hole_diameter": z.hole, "min_wall": z.min_wall, "bore": insert_bore(z)}))
                 .collect(),
             "hex_cap_screw_inch" => INCH_HEX_CAP
                 .iter()
