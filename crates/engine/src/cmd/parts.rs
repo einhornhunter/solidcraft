@@ -74,6 +74,7 @@ const FAMILIES: &[(&str, &str, &str)] = &[
     ("set_screw", "Hex socket set screw, flat point", "ISO 4026"),
     ("dowel_pin", "Parallel pin (dowel)", "ISO 8734"),
     ("bearing", "Deep groove ball bearing (envelope)", "ISO 15 (6000/6200/600 series)"),
+    ("heat_set_insert", "Heat-set threaded insert", ""),
     ("hex_bolt_gost", "Hex head bolt", "GOST 7798-70"),
     ("socket_head_cap_screw_gost", "Socket head cap screw", "GOST 11738-84"),
     ("set_screw_gost", "Hex socket set screw, flat point", "GOST 11074-93"),
@@ -86,7 +87,6 @@ const FAMILIES: &[(&str, &str, &str)] = &[
     ("hex_nut_inch", "Hex nut (inch)", "ASME B18.2.2"),
     ("washer_sae", "Plain washer, SAE (narrow)", "ANSI B18.22.1 Type A"),
     ("washer_uss", "Plain washer, USS (wide)", "ANSI B18.22.1 Type A"),
-    ("heat_set_insert", "Heat-set threaded insert", ""),
 ];
 
 /// ISO metric coarse: (size, d, pitch).
