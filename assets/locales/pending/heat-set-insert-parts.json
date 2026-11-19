@@ -1,0 +1,34 @@
+{
+  "en": {
+    "cmd.plastic_heat_insert_parts": "Update Heat-Set Insert Parts",
+    "ui.heat_insert.part": "Place Insert Parts"
+  },
+  "de": {
+    "cmd.plastic_heat_insert_parts": "Gewindeeinsatz-Teile aktualisieren",
+    "ui.heat_insert.part": "Einsätze als Teile einfügen"
+  },
+  "ja": {
+    "cmd.plastic_heat_insert_parts": "熱圧入インサート部品を更新",
+    "ui.heat_insert.part": "インサート部品を配置"
+  },
+  "zh": {
+    "cmd.plastic_heat_insert_parts": "更新热熔螺母零件",
+    "ui.heat_insert.part": "放置螺母零件"
+  },
+  "ko": {
+    "cmd.plastic_heat_insert_parts": "열융착 인서트 부품 업데이트",
+    "ui.heat_insert.part": "인서트 부품 배치"
+  },
+  "ar": {
+    "cmd.plastic_heat_insert_parts": "تحديث قطع الحشوات الملولبة بالحرارة",
+    "ui.heat_insert.part": "وضع الحشوات كقطع"
+  },
+  "he": {
+    "cmd.plastic_heat_insert_parts": "עדכון חלקי תותבי הברגה בחום",
+    "ui.heat_insert.part": "הוספת התותבים כחלקים"
+  },
+  "vi": {
+    "cmd.plastic_heat_insert_parts": "Cập nhật chi tiết đai ốc cấy nhiệt",
+    "ui.heat_insert.part": "Đặt đai ốc như chi tiết"
+  }
+}
